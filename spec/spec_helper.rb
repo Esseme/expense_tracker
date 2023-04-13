@@ -2,6 +2,10 @@ ENV["RACK_ENV"] = "test"
 RSpec.configure do |config|
   config.filter_gems_from_backtrace "rack", "rack-test", "sequel", "sinatra"
 
+  config.when_first_matching_example_defined(:db) do
+    require_relative "support/db"
+  end
+
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
